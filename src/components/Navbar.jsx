@@ -14,7 +14,7 @@ function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="font-bold text-xl">
-            Taller Mecánico
+            TECNOAUTO DIEGO LIMA
           </Link>
           <div className="flex items-center space-x-4">
             <Link to="/clientes" className="hover:text-blue-200">Clientes</Link>
