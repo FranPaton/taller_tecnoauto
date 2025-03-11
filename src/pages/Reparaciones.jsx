@@ -25,8 +25,7 @@ function Reparaciones() {
           modelo,
           matricula,
           clientes (
-            nombre,
-            apellidos
+            nombre
           )
         )
       `);
@@ -47,8 +46,7 @@ function Reparaciones() {
         modelo,
         matricula,
         clientes (
-          nombre,
-          apellidos
+          nombre
         )
       `);
     
@@ -93,7 +91,7 @@ function Reparaciones() {
               <option value="">Seleccione un vehículo</option>
               {vehiculos.map(vehiculo => (
                 <option key={vehiculo.id} value={vehiculo.id}>
-                  {vehiculo.marca} {vehiculo.modelo} - {vehiculo.matricula} ({vehiculo.clientes?.nombre} {vehiculo.clientes?.apellidos})
+                  {vehiculo.marca} {vehiculo.modelo} - {vehiculo.matricula} ({vehiculo.clientes?.nombre})
                 </option>
               ))}
             </select>
@@ -145,7 +143,7 @@ function Reparaciones() {
                   {reparacion.vehiculos?.marca} {reparacion.vehiculos?.modelo} - {reparacion.vehiculos?.matricula}
                 </td>
                 <td className="px-6 py-4">
-                  {reparacion.vehiculos?.clientes?.nombre} {reparacion.vehiculos?.clientes?.apellidos}
+                  {reparacion.vehiculos?.clientes?.nombre}
                 </td>
                 <td className="px-6 py-4">{reparacion.estado}</td>
                 <td className="px-6 py-4">{new Date(reparacion.fecha_entrada).toLocaleDateString()}</td>

@@ -28,8 +28,7 @@ function Presupuestos() {
             modelo,
             matricula,
             clientes (
-              nombre,
-              apellidos
+              nombre
             )
           )
         )
@@ -53,8 +52,7 @@ function Presupuestos() {
           modelo,
           matricula,
           clientes (
-            nombre,
-            apellidos
+            nombre
           )
         )
       `)
@@ -161,7 +159,7 @@ function Presupuestos() {
             {presupuestos.map((presupuesto) => (
               <tr key={presupuesto.id}>
                 <td className="px-6 py-4">
-                  {presupuesto.reparaciones?.vehiculos?.clientes?.nombre} {presupuesto.reparaciones?.vehiculos?.clientes?.apellidos}
+                  {presupuesto.reparaciones?.vehiculos?.clientes?.nombre}
                 </td>
                 <td className="px-6 py-4">
                   {presupuesto.reparaciones?.vehiculos?.marca} {presupuesto.reparaciones?.vehiculos?.modelo}

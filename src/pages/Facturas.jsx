@@ -27,8 +27,7 @@ function Facturas() {
             modelo,
             matricula,
             clientes (
-              nombre,
-              apellidos
+              nombre
             )
           )
         )
@@ -52,8 +51,7 @@ function Facturas() {
           modelo,
           matricula,
           clientes (
-            nombre,
-            apellidos
+            nombre
           )
         )
       `)
@@ -150,7 +148,7 @@ function Facturas() {
             {facturas.map((factura) => (
               <tr key={factura.id}>
                 <td className="px-6 py-4">
-                  {factura.reparaciones?.vehiculos?.clientes?.nombre} {factura.reparaciones?.vehiculos?.clientes?.apellidos}
+                  {factura.reparaciones?.vehiculos?.clientes?.nombre}
                 </td>
                 <td className="px-6 py-4">
                   {factura.reparaciones?.vehiculos?.marca} {factura.reparaciones?.vehiculos?.modelo}

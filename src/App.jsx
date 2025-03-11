@@ -7,6 +7,7 @@ import Reparaciones from './pages/Reparaciones';
 import Presupuestos from './pages/Presupuestos';
 import Facturas from './pages/Facturas';
 import Login from './pages/Login';
+import NuevoCliente from './pages/NuevoCliente';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/facturas" element={<Facturas />} />
                     <Route path="/clientes" element={<Clientes />} />
+                    <Route path="/nuevo-cliente" element={<NuevoCliente />} />
                     <Route path="/vehiculos" element={<Vehiculos />} />
                     <Route path="/reparaciones" element={<Reparaciones />} />
                     <Route path="/presupuestos" element={<Presupuestos />} />

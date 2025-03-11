@@ -1,15 +1,10 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
+import { useNavigate } from 'react-router-dom';
 
 function Clientes() {
   const [clientes, setClientes] = useState([]);
-  const [formData, setFormData] = useState({
-    nombre: '',
-    telefono: '',
-    email: '',
-    direccion: ''
-  });
-  u
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchClientes();
@@ -24,25 +19,6 @@ function Clientes() {
       console.error('Error al cargar clientes:', error);
     } else {
       setClientes(data || []);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { error } = await supabase
-      .from('clientes')
-      .insert([formData]);
-
-    if (error) {
-      console.error('Error al guardar cliente:', error);
-    } else {
-      setFormData({
-        nombre: '',
-        telefono: '',
-        email: '',
-        direccion: ''
-      });
-      fetchClientes();
     }
   };
 
@@ -61,52 +37,15 @@ function Clientes() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Gestión de Clientes</h1>
-      
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-sm mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block mb-2">Nombre completo</label>
-            <input
-              type="text"
-              value={formData.nombre}
-              onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-              className="w-full p-2 border rounded-sm"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-2">Teléfono</label>
-            <input
-              type="tel"
-              value={formData.telefono}
-              onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-              className="w-full p-2 border rounded-sm"
-            />
-          </div>
-          <div>
-            <label className="block mb-2">Email</label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
-              className="w-full p-2 border rounded-sm"
-            />
-          </div>
-          <div className="md:col-span-2">
-            <label className="block mb-2">Dirección</label>
-            <textarea
-              value={formData.direccion}
-              onChange={(e) => setFormData({...formData, direccion: e.target.value})}
-              className="w-full p-2 border rounded-sm"
-              rows="3"
-            ></textarea>
-          </div>
-        </div>
-        <button type="submit" className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-sm">
-          Guardar Cliente
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Gestión de Clientes</h1>
+        <button
+          onClick={() => navigate('/nuevo-cliente')}
+          className="bg-blue-600 text-white px-4 py-2 rounded-sm hover:bg-blue-700"
+        >
+          Nuevo Cliente
         </button>
-      </form>
+      </div>
 
       <div className="bg-white rounded-lg shadow-sm">
         <table className="min-w-full">
@@ -140,6 +79,8 @@ function Clientes() {
           </tbody>
         </table>
       </div>
+
+
     </div>
   );
 }

@@ -24,8 +24,7 @@ function Vehiculos() {
       .select(`
         *,
         clientes (
-          nombre,
-          apellidos
+          nombre
         )
       `);
     
@@ -39,7 +38,7 @@ function Vehiculos() {
   const fetchClientes = async () => {
     const { data, error } = await supabase
       .from('clientes')
-      .select('id, nombre, apellidos');
+      .select('id, nombre');
     
     if (error) {
       console.error('Error al cargar clientes:', error);
@@ -70,7 +69,7 @@ function Vehiculos() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold mb-8">Gestión de Vehículos</h1>
       
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-sm mb-8">
@@ -85,7 +84,7 @@ function Vehiculos() {
               <option value="">Seleccione un cliente</option>
               {clientes.map(cliente => (
                 <option key={cliente.id} value={cliente.id}>
-                  {cliente.nombre} {cliente.apellidos}
+                  {cliente.nombre}
                 </option>
               ))}
             </select>
@@ -157,7 +156,7 @@ function Vehiculos() {
           <tbody>
             {vehiculos.map((vehiculo) => (
               <tr key={vehiculo.id}>
-                <td className="px-6 py-4">{vehiculo.clientes?.nombre} {vehiculo.clientes?.apellidos}</td>
+                <td className="px-6 py-4">{vehiculo.clientes?.nombre}</td>
                 <td className="px-6 py-4">{vehiculo.marca}</td>
                 <td className="px-6 py-4">{vehiculo.modelo}</td>
                 <td className="px-6 py-4">{vehiculo.ano}</td>
