@@ -19,7 +19,19 @@ function Login() {
         .from('usuarios')
         .select('*')
         .eq('username', formData.username)
-        .eq('password', formData.password);
+        .single();
+
+      if (error) {
+        console.error('Error de Supabase:', error);
+        setError('Error al intentar iniciar sesión');
+        return;
+      }
+
+      const { data: verifyResult, error: verifyError } = await supabase
+        .rpc('verify_password', {
+          input_password: formData.password,
+          hashed_password: data.password
+        });
 
       if (error) {
         console.error('Error de Supabase:', error);
