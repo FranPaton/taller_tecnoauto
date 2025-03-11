@@ -5,11 +5,11 @@ function Clientes() {
   const [clientes, setClientes] = useState([]);
   const [formData, setFormData] = useState({
     nombre: '',
-    apellidos: '',
     telefono: '',
     email: '',
     direccion: ''
   });
+  u
 
   useEffect(() => {
     fetchClientes();
@@ -38,7 +38,6 @@ function Clientes() {
     } else {
       setFormData({
         nombre: '',
-        apellidos: '',
         telefono: '',
         email: '',
         direccion: ''
@@ -67,21 +66,11 @@ function Clientes() {
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-sm mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block mb-2">Nombre</label>
+            <label className="block mb-2">Nombre completo</label>
             <input
               type="text"
               value={formData.nombre}
               onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-              className="w-full p-2 border rounded-sm"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-2">Apellidos</label>
-            <input
-              type="text"
-              value={formData.apellidos}
-              onChange={(e) => setFormData({...formData, apellidos: e.target.value})}
               className="w-full p-2 border rounded-sm"
               required
             />
@@ -123,8 +112,7 @@ function Clientes() {
         <table className="min-w-full">
           <thead>
             <tr>
-              <th className="px-6 py-3 border-b">Nombre</th>
-              <th className="px-6 py-3 border-b">Apellidos</th>
+              <th className="px-6 py-3 border-b">Nombre completo</th>
               <th className="px-6 py-3 border-b">Teléfono</th>
               <th className="px-6 py-3 border-b">Email</th>
               <th className="px-6 py-3 border-b">Dirección</th>
@@ -135,7 +123,6 @@ function Clientes() {
             {clientes.map((cliente) => (
               <tr key={cliente.id}>
                 <td className="px-6 py-4">{cliente.nombre}</td>
-                <td className="px-6 py-4">{cliente.apellidos}</td>
                 <td className="px-6 py-4">{cliente.telefono}</td>
                 <td className="px-6 py-4">{cliente.email}</td>
                 <td className="px-6 py-4">{cliente.direccion}</td>
