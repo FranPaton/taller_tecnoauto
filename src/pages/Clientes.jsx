@@ -39,7 +39,7 @@ function Clientes() {
         <h1 className="text-3xl font-bold">Gestión de Clientes</h1>
         <button
           onClick={() => navigate('/nuevo-cliente')}
-          className="bg-blue-600 text-white px-4 py-2 rounded-sm hover:bg-blue-700"
+          className="bg-green-600 text-white px-4 py-2 rounded-sm hover:bg-green-500 transition cursor-pointer"
         >
           Nuevo Cliente
         </button>
