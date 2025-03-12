@@ -56,12 +56,12 @@ function Clientes() {
       </div>
 
       <div className="bg-white rounded-lg shadow-sm overflow-x-auto">
-        <table className="min-w-full table-fixed">
-          <thead>
+        <table className="min-w-full table-fixed text-left">
+          <thead className='bg-gray-200'>
             <tr>
-              <th className="px-6 py-3 border-b w-1/4 text-left">Nombre completo</th>
-              <th className="px-6 py-3 border-b w-1/4 text-left">DNI</th>
-              <th className="px-6 py-3 border-b w-1/4 text-left">Teléfono</th>
+              <th className="px-6 py-3 w-1/4">Nombre completo</th>
+              <th className="px-6 py-3  w-1/4 ">DNI</th>
+              <th className="px-6 py-3  w-1/4 ">Teléfono</th>
             </tr>
           </thead>
           <tbody>
