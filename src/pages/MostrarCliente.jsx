@@ -58,20 +58,20 @@ function MostrarCliente() {
 
   return (
     <div className="p-2">
-      <div className="flex justify-center items-center mb-8">
-        <h1 className="text-3xl font-bold">Detalles del Cliente</h1>
+      <div className="flex justify-center items-center mb-4">
+        <h1 className="text-2xl sm:text-3xl font-bold">Detalles del Cliente</h1>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm max-w-2xl mx-auto p-6">
+      <div className="bg-white rounded-lg shadow-sm max-w-2xl mx-auto p-4">
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
               <label className="block mb-2">Nombre completo</label>
               <input
                 type="text"
                 value={formData.nombre}
                 onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                className="w-full p-2 border rounded-sm"
+                className="w-full p-1 border rounded-sm"
                 required
               />
             </div>
@@ -81,7 +81,7 @@ function MostrarCliente() {
                 type="text"
                 value={formData.dni || ''}
                 onChange={(e) => setFormData({...formData, dni: e.target.value})}
-                className="w-full p-2 border rounded-sm"
+                className="w-full p-1 border rounded-sm"
                 pattern="[0-9]{8}[A-Za-z]"
                 title="Formato de DNI válido: 8 números y una letra"
                 required
@@ -93,7 +93,7 @@ function MostrarCliente() {
                 type="tel"
                 value={formData.telefono}
                 onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-                className="w-full p-2 border rounded-sm"
+                className="w-full p-1 border rounded-sm"
               />
             </div>
             <div>
@@ -102,7 +102,7 @@ function MostrarCliente() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full p-2 border rounded-sm"
+                className="w-full p-1 border rounded-sm"
               />
             </div>
             <div className="col-span-2">
@@ -111,17 +111,17 @@ function MostrarCliente() {
                 type="text"
                 value={formData.direccion}
                 onChange={(e) => setFormData({...formData, direccion: e.target.value})}
-                className="w-full p-2 border rounded-sm"
+                className="w-full p-1 border rounded-sm"
                 required
               />
             </div>
           </div>
-          <div className="col-span-2 mt-4">
+          <div className="col-span-2 mt-2">
             <label className="block mb-2">Observaciones</label>
             <textarea
               value={formData.observaciones}
               onChange={(e) => setFormData({...formData, observaciones: e.target.value})}
-              className="w-full p-2 border rounded-sm"
+              className="w-full p-1 border rounded-sm resize-none"
               rows="3"
               maxLength={255}
             ></textarea>

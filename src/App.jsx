@@ -23,7 +23,7 @@ function App() {
             <ProtectedRoute>
               <div className="min-h-screen bg-gray-100">
                 <Navbar />
-                <main className="container mx-auto px-4 py-8">
+                <main className="container mx-auto px-4 py-4">
                   <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/facturas" element={<Facturas />} />
