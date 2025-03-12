@@ -18,10 +18,10 @@ function Navbar() {
           </Link>
           <div className="flex items-center space-x-4">
             <Link to="/clientes" className="hover:text-blue-200">Clientes</Link>
-            <Link to="/vehiculos" className="hover:text-blue-200">Vehículos</Link>
+            <Link to="/facturas" className="hover:text-blue-200">Facturas</Link>
             <Link to="/reparaciones" className="hover:text-blue-200">Reparaciones</Link>
             <Link to="/presupuestos" className="hover:text-blue-200">Presupuestos</Link>
-            <Link to="/facturas" className="hover:text-blue-200">Facturas</Link>
+            <Link to="/vehiculos" className="hover:text-blue-200">Vehículos</Link>
             <button
               onClick={handleLogout}
               className="ml-4 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-sm"
