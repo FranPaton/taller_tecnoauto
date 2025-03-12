@@ -6,6 +6,7 @@ function NuevoCliente() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nombre: '',
+    dni: '',
     telefono: '',
     email: '',
     direccion: '',
@@ -14,16 +15,9 @@ function NuevoCliente() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.dni) {
-      alert('El DNI es obligatorio');
-      return;
-    }
-
     const { error } = await supabase
       .from('clientes')
-      .insert([{...formData, dni: formData.dni}]);
-
+      .insert([formData]);
     if (error) {
       console.error('Error al guardar cliente:', error);
     } else {
@@ -46,7 +40,7 @@ function NuevoCliente() {
                 type="text"
                 value={formData.nombre}
                 onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                className="w-full p-1 border rounded-sm bg-blue-50"
                 required
               />
             </div>
@@ -54,9 +48,9 @@ function NuevoCliente() {
               <label className="block mb-2">DNI</label>
               <input
                 type="text"
-                value={formData.dni || ''}
+                value={formData.dni}
                 onChange={(e) => setFormData({...formData, dni: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                className="w-full p-1 border rounded-sm bg-blue-50"
                 pattern="[0-9]{8}[A-Za-z]"
                 title="Formato de DNI válido: 8 números y una letra"
                 required
@@ -68,7 +62,7 @@ function NuevoCliente() {
                 type="tel"
                 value={formData.telefono}
                 onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                className="w-full p-1 border rounded-sm bg-blue-50"
               />
             </div>
             <div>
@@ -77,7 +71,7 @@ function NuevoCliente() {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                className="w-full p-1 border rounded-sm bg-blue-50"
               />
             </div>
             <div className="col-span-2">
@@ -86,7 +80,7 @@ function NuevoCliente() {
                 type="text"
                 value={formData.direccion}
                 onChange={(e) => setFormData({...formData, direccion: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                className="w-full p-1 border rounded-sm bg-blue-50"
                 required
               />
             </div>
@@ -95,7 +89,7 @@ function NuevoCliente() {
               <textarea
                 value={formData.observaciones}
                 onChange={(e) => setFormData({...formData, observaciones: e.target.value})}
-                className="w-full p-1 border rounded-sm resize-none"
+                className="w-full p-1 border rounded-sm bg-blue-50 resize-none"
                 maxLength={255}
                 rows="3"
               ></textarea>

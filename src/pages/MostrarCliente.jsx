@@ -13,6 +13,7 @@ function MostrarCliente() {
     observaciones: ''
   });
 
+
   useEffect(() => {
     fetchCliente();
   }, []);
@@ -34,11 +35,7 @@ function MostrarCliente() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.dni) {
-      alert('El DNI es obligatorio');
-      return;
-    }
+
 
     const updatedData = {
       ...formData,
@@ -61,6 +58,38 @@ function MostrarCliente() {
       <div className="flex justify-center items-center mb-4">
         <h1 className="text-2xl sm:text-3xl font-bold">Detalles del Cliente</h1>
       </div>
+      <div className="flex justify-center gap-4 mb-4">
+        <button
+          type="button"
+          onClick={() => navigate('/clientes')}
+          className="px-4 py-2 bg-teal-400 hover:bg-teal-200 transition rounded cursor-pointer"
+        >
+          Facturas
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate('/clientes')}
+          className="px-4 py-2 bg-amber-500 hover:bg-amber-200 transition rounded cursor-pointer"
+        >
+          Reparaciones
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate('/clientes')}
+          className="px-4 py-2 bg-violet-300 hover:bg-violet-200 transition rounded cursor-pointer"
+        >
+          Presupuestos
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate('/clientes')}
+          className="px-4 py-2 bg-rose-200 hover:bg-rose-100 transition rounded cursor-pointer"
+        >
+          Vehículos
+        </button>
+
+
+      </div>
 
       <div className="bg-white rounded-lg shadow-sm max-w-2xl mx-auto p-4">
         <form onSubmit={handleSubmit}>
@@ -70,8 +99,8 @@ function MostrarCliente() {
               <input
                 type="text"
                 value={formData.nombre}
-                onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                className="w-full p-1 border rounded-sm bg-blue-50"
                 required
               />
             </div>
@@ -79,11 +108,12 @@ function MostrarCliente() {
               <label className="block mb-2">DNI</label>
               <input
                 type="text"
-                value={formData.dni || ''}
-                onChange={(e) => setFormData({...formData, dni: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                value={formData.dni}
+                onChange={(e) => setFormData({ ...formData, dni: e.target.value })}
+                className="w-full p-1 border rounded-sm bg-blue-50"
                 pattern="[0-9]{8}[A-Za-z]"
                 title="Formato de DNI válido: 8 números y una letra"
+
                 required
               />
             </div>
@@ -92,8 +122,8 @@ function MostrarCliente() {
               <input
                 type="tel"
                 value={formData.telefono}
-                onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                className="w-full p-1 border rounded-sm bg-blue-50"
               />
             </div>
             <div>
@@ -101,8 +131,8 @@ function MostrarCliente() {
               <input
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full p-1 border rounded-sm bg-blue-50"
               />
             </div>
             <div className="col-span-2">
@@ -110,8 +140,8 @@ function MostrarCliente() {
               <input
                 type="text"
                 value={formData.direccion}
-                onChange={(e) => setFormData({...formData, direccion: e.target.value})}
-                className="w-full p-1 border rounded-sm"
+                onChange={(e) => setFormData({ ...formData, direccion: e.target.value })}
+                className="w-full p-1 border rounded-sm bg-blue-50"
                 required
               />
             </div>
@@ -120,7 +150,7 @@ function MostrarCliente() {
             <label className="block mb-2">Observaciones</label>
             <textarea
               value={formData.observaciones}
-              onChange={(e) => setFormData({...formData, observaciones: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, observaciones: e.target.value })}
               className="w-full p-1 border rounded-sm resize-none"
               rows="3"
               maxLength={255}
@@ -146,14 +176,14 @@ function MostrarCliente() {
                   deleteCliente();
                 }
               }}
-              className="px-4 py-2 text-red-600 hover:text-red-800"
+              className="px-4 py-2 bg-red-500 hover:bg-red-100 transition rounded cursor-pointer"
             >
               Eliminar
             </button>
             <button
               type="button"
               onClick={() => navigate('/clientes')}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800"
+              className="px-4 py-2 bg-red-500 hover:bg-red-100 transition rounded cursor-pointer"
             >
               Cancelar
             </button>
