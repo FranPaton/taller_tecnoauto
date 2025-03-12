@@ -29,7 +29,7 @@ function Clientes() {
   const filteredClientes = clientes.filter(cliente =>
     cliente.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
     cliente.telefono.toLowerCase().includes(busqueda.toLowerCase()) ||
-    cliente.email.toLowerCase().includes(busqueda.toLowerCase())
+    cliente.dni.toLowerCase().includes(busqueda.toLowerCase())
     
   );
 
@@ -59,10 +59,9 @@ function Clientes() {
         <table className="min-w-full table-fixed">
           <thead>
             <tr>
-              <th className="px-6 py-3 border-b w-1/4">Nombre completo</th>
-              <th className="px-6 py-3 border-b w-1/4">DNI</th>
-              <th className="px-6 py-3 border-b w-1/4">Teléfono</th>
-              <th className="px-6 py-3 border-b w-1/4">Email</th>
+              <th className="px-6 py-3 border-b w-1/4 text-left">Nombre completo</th>
+              <th className="px-6 py-3 border-b w-1/4 text-left">DNI</th>
+              <th className="px-6 py-3 border-b w-1/4 text-left">Teléfono</th>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +74,6 @@ function Clientes() {
                 <td className="px-6 py-4 truncate">{cliente.nombre}</td>
                 <td className="px-6 py-4 truncate">{cliente.dni}</td>
                 <td className="px-6 py-4 truncate">{cliente.telefono}</td>
-                <td className="px-6 py-4 truncate">{cliente.email}</td>
               </tr>
             ))}
           </tbody>
