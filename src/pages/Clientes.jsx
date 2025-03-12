@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Clientes() {
   const [clientes, setClientes] = useState([]);
+  const [busqueda, setBusqueda] = useState('');
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   useEffect(() => {
     fetchClientes();
-  }, []);
+  }, [location.key]);
 
   const fetchClientes = async () => {
     const { data, error } = await supabase
       .from('clientes')
-      .select('*');
+      .select('*')
+      .order('updated_at', { ascending: false });
     
     if (error) {
       console.error('Error al cargar clientes:', error);
@@ -22,21 +26,15 @@ function Clientes() {
     }
   };
 
-  const handleDelete = async (id) => {
-    const { error } = await supabase
-      .from('clientes')
-      .delete()
-      .eq('id', id);
-
-    if (error) {
-      console.error('Error al eliminar cliente:', error);
-    } else {
-      fetchClientes();
-    }
-  };
+  const filteredClientes = clientes.filter(cliente =>
+    cliente.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+    cliente.telefono.toLowerCase().includes(busqueda.toLowerCase()) ||
+    cliente.email.toLowerCase().includes(busqueda.toLowerCase())
+    
+  );
 
   return (
-    <div>
+    <div className="p-2 max-w-[1920px] mx-auto">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">Gestión de Clientes</h1>
         <button
@@ -47,40 +45,42 @@ function Clientes() {
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow-sm">
-        <table className="min-w-full">
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Buscar clientes..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          className="w-full p-2 border rounded-sm bg-blue-50 border-blue-300"
+        />
+      </div>
+
+      <div className="bg-white rounded-lg shadow-sm overflow-x-auto">
+        <table className="min-w-full table-fixed">
           <thead>
             <tr>
-              <th className="px-6 py-3 border-b">Nombre completo</th>
-              <th className="px-6 py-3 border-b">Teléfono</th>
-              <th className="px-6 py-3 border-b">Email</th>
-              <th className="px-6 py-3 border-b">Dirección</th>
-              <th className="px-6 py-3 border-b">Acciones</th>
+              <th className="px-6 py-3 border-b w-1/4">Nombre completo</th>
+              <th className="px-6 py-3 border-b w-1/4">DNI</th>
+              <th className="px-6 py-3 border-b w-1/4">Teléfono</th>
+              <th className="px-6 py-3 border-b w-1/4">Email</th>
             </tr>
           </thead>
           <tbody>
-            {clientes.map((cliente) => (
-              <tr key={cliente.id}>
-                <td className="px-6 py-4">{cliente.nombre}</td>
-                <td className="px-6 py-4">{cliente.telefono}</td>
-                <td className="px-6 py-4">{cliente.email}</td>
-                <td className="px-6 py-4">{cliente.direccion}</td>
-                <td className="px-6 py-4">
-                  <button className="text-blue-600 hover:text-blue-800 mr-2">Editar</button>
-                  <button 
-                    onClick={() => handleDelete(cliente.id)}
-                    className="text-red-600 hover:text-red-800"
-                  >
-                    Eliminar
-                  </button>
-                </td>
+            {(busqueda === '' ? filteredClientes.slice(0, 5) : filteredClientes).map((cliente) => (
+              <tr 
+                key={cliente.id}
+                onClick={() => navigate(`/cliente/${cliente.id}`)}
+                className="cursor-pointer hover:bg-gray-50"
+              >
+                <td className="px-6 py-4 truncate">{cliente.nombre}</td>
+                <td className="px-6 py-4 truncate">{cliente.dni}</td>
+                <td className="px-6 py-4 truncate">{cliente.telefono}</td>
+                <td className="px-6 py-4 truncate">{cliente.email}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-
     </div>
   );
 }

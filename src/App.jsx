@@ -9,6 +9,7 @@ import Facturas from './pages/Facturas';
 import Login from './pages/Login';
 import NuevoCliente from './pages/NuevoCliente';
 import ProtectedRoute from './components/ProtectedRoute';
+import MostrarCliente from './pages/MostrarCliente';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/vehiculos" element={<Vehiculos />} />
                     <Route path="/reparaciones" element={<Reparaciones />} />
                     <Route path="/presupuestos" element={<Presupuestos />} />
+                    <Route path="/cliente/:id" element={<MostrarCliente />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </main>
